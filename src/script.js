@@ -38,7 +38,7 @@ const gltfLoader = new GLTFLoader();
 gltfLoader.setDRACOLoader(dracoLoader);
 gltfLoader.load("/5.glb", (gltf) => {
   const model = gltf.scene;
-  model.scale.set(1, 1, 1);
+  model.scale.set(0.1, 0.1, 0.1);
   model.position.set(0,-0.09,0);
   scene.add(model);
   updateAllMaterials();
