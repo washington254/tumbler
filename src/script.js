@@ -38,7 +38,7 @@ const gltfLoader = new GLTFLoader();
 gltfLoader.setDRACOLoader(dracoLoader);
 gltfLoader.load("/5.glb", (gltf) => {
   const model = gltf.scene;
-  model.scale.set(0.005, 0.005, 0.005);
+  model.scale.set(0.001, 0.001, 0.001);
   model.position.set(0,-0.09,0);
   scene.add(model);
   updateAllMaterials();
@@ -134,15 +134,13 @@ tick();
 const updateAllMaterials = () => {
     scene.traverse((child) => {
         if (child instanceof THREE.Mesh && child.material instanceof THREE.MeshStandardMaterial) {
-            // Create a new MeshPhysicalMaterial for glass
             const glassMaterial = new THREE.MeshPhysicalMaterial({
-                color: 0xffffff,
                 metalness: 0,
                 roughness: 0,
                 transmission: 1, 
                 opacity: 1,
                 transparent: true,
-                envMapIntensity: 8.5, 
+                envMapIntensity1 8.5, 
                 clearcoat: 1,
                 clearcoatRoughness: 0,
                 reflectivity: 1,
@@ -150,9 +148,7 @@ const updateAllMaterials = () => {
             });
 
 
-            child.material = glassMaterial;
-            child.castShadow = true;
-            child.receiveShadow = true;
+        
             child.material.needsUpdate = true;
         }
     });
