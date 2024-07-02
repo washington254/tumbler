@@ -10,11 +10,15 @@ import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 import { SMAAPass } from 'three/examples/jsm/postprocessing/SMAAPass.js';
 import { ACESFilmicToneMappingShader } from 'three/examples/jsm/Addons.js';
+import * as dat from 'lil-gui';
+
 
 // Base
+const gui = new dat.GUI();
 const canvas = document.querySelector('canvas.webgl');
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x222222);
+scene.background = new THREE.Color(0xf0f0f0);
+
 
 // Loaders
 const rgbeLoader = new RGBELoader();
@@ -108,9 +112,13 @@ if(renderer.getPixelRatio() === 1 && !renderer.capabilities.isWebGL2) {
     const smaaPass = new SMAAPass();
     effectComposer.addPass(smaaPass);
 }
+const params = {
+    environmentIntensity: scene.environmentIntensity
+};
 
-
-
+gui.add(params, 'environmentIntensity', 1, 6).onChange(function(value) {
+    scene.environmentIntensity = value;
+});
 // Animate
 const clock = new THREE.Clock();
 const tick = () => {
