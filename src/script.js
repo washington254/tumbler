@@ -36,9 +36,9 @@ dracoLoader.setDecoderPath("/draco/");
 dracoLoader.setDecoderConfig({ type: 'js' });
 const gltfLoader = new GLTFLoader();
 gltfLoader.setDRACOLoader(dracoLoader);
-gltfLoader.load("/Tumbler.glb", (gltf) => {
+gltfLoader.load("/5.glb", (gltf) => {
   const model = gltf.scene;
-  model.scale.set(2, 2, 2);
+  model.scale.set(0.005, 0.005, 0.005);
   model.position.set(0,-0.09,0);
   scene.add(model);
   updateAllMaterials();
@@ -71,6 +71,7 @@ scene.add(camera);
 // Controls
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
+controls.zoom = false;
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({
