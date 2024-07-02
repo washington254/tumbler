@@ -130,12 +130,12 @@ const tick = () => {
 };
 
 tick();
-
 const updateAllMaterials = () => {
     scene.traverse((child) => {
         if (child instanceof THREE.Mesh && child.material instanceof THREE.MeshStandardMaterial) {
+            // Create a new MeshPhysicalMaterial for glass
             const glassMaterial = new THREE.MeshPhysicalMaterial({
-                 color: 0xffffff,
+                color: 0xffffff,
                 metalness: 0,
                 roughness: 0,
                 transmission: 1, // Make the material transparent
@@ -145,13 +145,14 @@ const updateAllMaterials = () => {
                 clearcoat: 1,
                 clearcoatRoughness: 0,
                 reflectivity: 1,
-                ior: 1.5,
+                ior: 1.5, // Index of Refraction, adjust for different glass types
             });
 
-
-        
+            // Update the mesh's material to the new glass material
+            child.material = glassMaterial;
+            child.castShadow = true;
+            child.receiveShadow = true;
             child.material.needsUpdate = true;
         }
     });
 };
-
