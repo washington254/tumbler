@@ -131,14 +131,30 @@ const tick = () => {
 
 tick();
 
-// Function to update all materials
 const updateAllMaterials = () => {
     scene.traverse((child) => {
-        if(child instanceof THREE.Mesh && child.material instanceof THREE.MeshStandardMaterial) {
-            child.material.envMapIntensity = 8.5;
-            child.material.needsUpdate = true;
+        if (child instanceof THREE.Mesh && child.material instanceof THREE.MeshStandardMaterial) {
+            // Create a new MeshPhysicalMaterial for glass
+            const glassMaterial = new THREE.MeshPhysicalMaterial({
+                color: 0xffffff,
+                metalness: 0,
+                roughness: 0,
+                transmission: 1, 
+                opacity: 1,
+                transparent: true,
+                envMapIntensity: 8.5, 
+                clearcoat: 1,
+                clearcoatRoughness: 0,
+                reflectivity: 1,
+                ior: 1.5, 
+            });
+
+
+            child.material = glassMaterial;
             child.castShadow = true;
             child.receiveShadow = true;
+            child.material.needsUpdate = true;
         }
     });
 };
+
