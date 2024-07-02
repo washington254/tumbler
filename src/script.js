@@ -17,7 +17,7 @@ import * as dat from 'lil-gui';
 const gui = new dat.GUI();
 const canvas = document.querySelector('canvas.webgl');
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xf0f0f0);
+scene.background = new THREE.Color(0x232323);
 
 
 // Loaders
