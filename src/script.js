@@ -140,7 +140,7 @@ const updateAllMaterials = () => {
                 transmission: 1, 
                 opacity: 1,
                 transparent: true,
-                envMapIntensity1 8.5, 
+                envMapIntensity: 8.5, 
                 clearcoat: 1,
                 clearcoatRoughness: 0,
                 reflectivity: 1,
