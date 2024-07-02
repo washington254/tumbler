@@ -117,7 +117,7 @@ const params = {
     environmentIntensity: scene.environmentIntensity
 };
 
-gui.add(params, 'environmentIntensity', 1, 6).onChange(function(value) {
+gui.add(params, 'environmentIntensity', 1, 20).onChange(function(value) {
     scene.environmentIntensity = value;
 });
 // Animate
