@@ -36,7 +36,7 @@ dracoLoader.setDecoderPath("/draco/");
 dracoLoader.setDecoderConfig({ type: 'js' });
 const gltfLoader = new GLTFLoader();
 gltfLoader.setDRACOLoader(dracoLoader);
-gltfLoader.load("/Tumbler.glb.glb", (gltf) => {
+gltfLoader.load("/Tumbler.glb", (gltf) => {
   const model = gltf.scene;
   model.scale.set(2, 2, 2);
   model.position.set(0,-0.09,0);
