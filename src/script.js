@@ -135,16 +135,17 @@ const updateAllMaterials = () => {
     scene.traverse((child) => {
         if (child instanceof THREE.Mesh && child.material instanceof THREE.MeshStandardMaterial) {
             const glassMaterial = new THREE.MeshPhysicalMaterial({
+                 color: 0xffffff,
                 metalness: 0,
                 roughness: 0,
-                transmission: 1, 
+                transmission: 1, // Make the material transparent
                 opacity: 1,
                 transparent: true,
-                envMapIntensity: 8.5, 
+                envMapIntensity: 8.5, // Adjust this to fit your scene's lighting
                 clearcoat: 1,
                 clearcoatRoughness: 0,
                 reflectivity: 1,
-                ior: 1.5, 
+                ior: 1.5,
             });
 
 
