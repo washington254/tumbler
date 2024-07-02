@@ -17,7 +17,7 @@ import * as dat from 'lil-gui';
 const gui = new dat.GUI();
 const canvas = document.querySelector('canvas.webgl');
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x232323);
+scene.background = new THREE.Color(0xffffff);
 
 
 // Loaders
@@ -25,7 +25,7 @@ const rgbeLoader = new RGBELoader();
 rgbeLoader.load("/env-metal-1.hdr", (texture) => {
   texture.mapping = THREE.EquirectangularReflectionMapping;
   scene.environment = texture;
-  scene.environmentIntensity = 1.3;
+  scene.environmentIntensity = 1.4;
 //   scene.background = texture
 });
 
@@ -38,7 +38,7 @@ const gltfLoader = new GLTFLoader();
 gltfLoader.setDRACOLoader(dracoLoader);
 gltfLoader.load("/Tumbler.glb", (gltf) => {
   const model = gltf.scene;
-  model.scale.set(1.5, 1.5, 1.5);
+  model.scale.set(2, 2, 2);
   model.position.set(0,-0.09,0);
   scene.add(model);
   updateAllMaterials();
