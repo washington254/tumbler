@@ -15,18 +15,17 @@ import * as dat from 'lil-gui';
 
 // Base
 const gui = new dat.GUI();
+gui.hide();
 const canvas = document.querySelector('canvas.webgl');
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x000000);
-
 
 // Loaders
 const rgbeLoader = new RGBELoader();
 rgbeLoader.load("/env-metal-1.hdr", (texture) => {
   texture.mapping = THREE.EquirectangularReflectionMapping;
   scene.environment = texture;
-  scene.environmentIntensity = 1.4;
-//   scene.background = texture
+  scene.environmentIntensity = 10.9;
 });
 
 // Models
@@ -36,9 +35,9 @@ dracoLoader.setDecoderPath("/draco/");
 dracoLoader.setDecoderConfig({ type: 'js' });
 const gltfLoader = new GLTFLoader();
 gltfLoader.setDRACOLoader(dracoLoader);
-gltfLoader.load("/5.glb", (gltf) => {
+gltfLoader.load("/Tumbler.glb", (gltf) => {
   const model = gltf.scene;
-  model.scale.set(0.001, 0.001, 0.001);
+  model.scale.set(2, 2,2);
   model.position.set(0,-0.09,0);
   scene.add(model);
   updateAllMaterials();
@@ -71,12 +70,13 @@ scene.add(camera);
 // Controls
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
-controls.zoom = false;
+controls.enableZoom = false;
+
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({
     canvas: canvas,
-    antialias: true
+    antialias: true,
 });
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFShadowMap;
@@ -113,13 +113,18 @@ if(renderer.getPixelRatio() === 1 && !renderer.capabilities.isWebGL2) {
     const smaaPass = new SMAAPass();
     effectComposer.addPass(smaaPass);
 }
+
 const params = {
     environmentIntensity: scene.environmentIntensity
 };
 
-gui.add(params, 'environmentIntensity', 1, 20).onChange(function(value) {
+gui.add(params, 'environmentIntensity', 1, 100).onChange(function(value) {
     scene.environmentIntensity = value;
 });
+
+
+
+
 // Animate
 const clock = new THREE.Clock();
 const tick = () => {
@@ -130,29 +135,15 @@ const tick = () => {
 };
 
 tick();
+
+// Function to update all materials
 const updateAllMaterials = () => {
     scene.traverse((child) => {
-        if (child instanceof THREE.Mesh && child.material instanceof THREE.MeshStandardMaterial) {
-            // Create a new MeshPhysicalMaterial for glass
-            const glassMaterial = new THREE.MeshPhysicalMaterial({
-                color: 0xffffff,
-                metalness: 0,
-                roughness: 0,
-                transmission: 1, // Make the material transparent
-                opacity: 1,
-                transparent: true,
-                envMapIntensity: 8.5, // Adjust this to fit your scene's lighting
-                clearcoat: 1,
-                clearcoatRoughness: 0,
-                reflectivity: 1,
-                ior: 1.5, // Index of Refraction, adjust for different glass types
-            });
-
-            // Update the mesh's material to the new glass material
-            child.material = glassMaterial;
+        if(child instanceof THREE.Mesh && child.material instanceof THREE.MeshStandardMaterial) {
+            child.material.envMapIntensity = 8.5;
+            child.material.needsUpdate = true;
             child.castShadow = true;
             child.receiveShadow = true;
-            child.material.needsUpdate = true;
         }
     });
 };
