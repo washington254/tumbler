@@ -39,14 +39,14 @@ html, body {
 /* Media query for smaller screens (like phones) */
 @media screen and (max-width: 768px) {
     .gif-background {
-        background-image: url('./hand.gif');
+        background-image: url('/hand.gif');
     }
 }
 
 /* Media query for larger screens (like laptops) */
 @media screen and (min-width: 769px) {
     .gif-background {
-        background-image: url('./cursor.gif');
+        background-image: url('/cursor.gif');
     }
 }
 
