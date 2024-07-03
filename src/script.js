@@ -25,7 +25,7 @@ const rgbeLoader = new RGBELoader();
 rgbeLoader.load("/env-metal-1.hdr", (texture) => {
   texture.mapping = THREE.EquirectangularReflectionMapping;
   scene.environment = texture;
-  scene.environmentIntensity = 10.9;
+  scene.environmentIntensity = 3.0;
 });
 
 // Models
@@ -45,6 +45,17 @@ gltfLoader.load("/Tumbler.glb", (gltf) => {
   console.error(error);
 });
 
+// Lights
+const ambientLight = new THREE.AmbientLight(0xffffff, 3.5); // Soft white ambient light
+scene.add(ambientLight);
+
+const directionalLight1 = new THREE.DirectionalLight(0xffffff, 5.8); // Soft white directional light
+directionalLight1.position.set(1, 1, 1); // Position the light
+scene.add(directionalLight1);
+
+const directionalLight2 = new THREE.DirectionalLight(0xffffff, 5.5); // Soft white directional light
+directionalLight2.position.set(-1, 0, 0); // Position the light
+scene.add(directionalLight2);
 
 // Sizes
 const sizes = {
