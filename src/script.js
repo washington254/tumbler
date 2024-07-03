@@ -83,6 +83,16 @@ scene.add(camera);
 const controls = new TrackballControls(camera, canvas);
 controls.enableDamping = true;
 controls.enableZoom = false;
+controls.mouseButtons = {
+    LEFT: THREE.MOUSE.ROTATE,
+    MIDDLE: THREE.MOUSE.DOLLY,
+    RIGHT: THREE.MOUSE.ROTATE, // Disable pan with right mouse button
+};
+controls.rotateSpeed = 0.8;
+controls.panSpeed = 0.8;
+
+
+				
 
 
 
