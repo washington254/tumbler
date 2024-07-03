@@ -79,20 +79,19 @@ const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerH
 camera.position.set(0.1327, 0.3490, 0.4392);
 scene.add(camera);
 
-// Controls
-const controls = new TrackballControls(camera, canvas);
-controls.enableDamping = true;
-controls.enableZoom = false;
+// Initialize TrackballControls
+const controls = new THREE.TrackballControls(camera, canvas);
+
+controls.enableDamping = true; 
+controls.enableZoom = true; 
+controls.zoomCamera = function () {};
 controls.mouseButtons = {
     LEFT: THREE.MOUSE.ROTATE,
     MIDDLE: THREE.MOUSE.DOLLY,
-    RIGHT: THREE.MOUSE.ROTATE, // Disable pan with right mouse button
+    RIGHT: THREE.MOUSE.ROTATE, 
 };
 controls.rotateSpeed = 0.8;
 controls.panSpeed = 0.8;
-
-
-				
 
 
 
