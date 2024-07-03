@@ -18,32 +18,26 @@ html, body {
     height: 70px;
     background-size: cover;
     background-position: center;
-    z-index: 20; /* Ensure it's above the canvas and text overlays */
-    pointer-events: none; /* Allow interaction with elements beneath */
+    z-index: 20; 
+    pointer-events: none; 
 }
 
 .overlay {
     position: fixed;
     color: white;
     font-family: Arial, sans-serif;
-    z-index: 30; /* Ensure text overlays are above the background */
-    pointer-events: none; /* Ensures the overlay text doesn't interfere with any interactions with the canvas */
+    z-index: 30;
+    pointer-events: none; 
 }
 
 .overlay h4 {
-    font-size: clamp(18px, 2vw, 24px); /* Adjust these values as needed */
-    text-align: center; /* Center the text horizontally */
-    padding: 10px; /* Optional padding for better readability */
+    font-size: clamp(1.1rem, 2vw, 1.5rem); 
+    text-align: center; 
+    padding: 10px; 
 }
 
-/* Media query for smaller screens (like phones) */
-@media screen and (max-width: 768px) {
-    .gif-background {
-        background-image: url('/hand.gif');
-    }
-}
 
-/* Media query for larger screens (like laptops) */
+
 @media screen and (min-width: 769px) {
     .gif-background {
         background-image: url('/cursor.gif');
@@ -86,4 +80,39 @@ html, body {
     top: 10px;
     left: 50%;
     transform: translateX(-50%) scale(1.2);
+}
+
+@media screen and (max-width: 768px) {
+    .gif-background {
+        background-image: url('/hand.gif');
+    }
+
+    .overlay {
+        text-align: center;
+    }
+
+    .overlay h4 {
+        font-size: clamp(0.9rem, 3vw, 1.3rem);
+        padding: 5px;
+    }
+    .top-center{
+        font-weight: bold;
+        font-size: clamp(1.3rem, 3vw, 1.8rem); 
+    }
+    .top-left,
+    .top-right
+    {
+        top: 60px;
+    }
+
+    .center-left,
+    .center-right {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .bottom-left,
+    .bottom-right {
+        bottom: 10px; 
+    }
 }
