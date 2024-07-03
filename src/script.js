@@ -80,7 +80,7 @@ camera.position.set(0.1327, 0.3490, 0.4392);
 scene.add(camera);
 
 // Initialize TrackballControls
-const controls = new THREE.TrackballControls(camera, canvas);
+const controls = new TrackballControls(camera, canvas);
 
 controls.enableDamping = true; 
 controls.enableZoom = true; 
