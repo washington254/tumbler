@@ -74,24 +74,32 @@ window.addEventListener('resize', () => {
     effectComposer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 });
 
-// Camera
+
+
+function isMobileDevice() {
+    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+}
 const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 15);
-camera.position.set(0.1327, 0.3490, 0.4392);
+if (isMobileDevice()) {
+    camera.position.set(0.1327, 0.0490, 0.8); 
+} else {
+    camera.position.set(0.1327, 0.0490, 0.5); 
+}
+
 scene.add(camera);
 
-// Initialize TrackballControls
 const controls = new TrackballControls(camera, canvas);
 
 controls.enableDamping = true; 
-controls.enableZoom = true; 
-controls.zoomCamera = function () {};
+controls.noZoom = true;
+controls.noPan = true;
+
 controls.mouseButtons = {
     LEFT: THREE.MOUSE.ROTATE,
-    MIDDLE: THREE.MOUSE.DOLLY,
+    MIDDLE: THREE.MOUSE.ROTATE, 
     RIGHT: THREE.MOUSE.ROTATE, 
 };
 controls.rotateSpeed = 0.8;
-controls.panSpeed = 0.8;
 
 
 

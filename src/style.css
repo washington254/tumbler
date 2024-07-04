@@ -1,10 +1,16 @@
+@font-face {
+    font-family: 'Aptos';
+    src: url('/aptos.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Assistant", sans-serif;
+    font-family: "Aptos", sans-serif;
 }
-
 html, body {
     overflow: hidden;
     width: 100%;
@@ -25,11 +31,30 @@ html, body {
     opacity: 1; 
     transition: opacity 1.5s ease;
 }
-
+.scroll-overlay-1{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 20%;
+    height: 100%;
+    z-index: 100;
+    background: rgba(255,0,0,0.5);
+    filter: blur(12px);
+}
+.scroll-overlay-2{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20%;
+    height: 100%;
+    z-index: 100;
+    background: rgba(255,0,0,0.5);
+    filter: blur(12px);
+}
 .overlay {
     position: fixed;
-    color: white;
-    font-family: Arial, sans-serif;
+    color: black;
+    background: white;
     z-index: 30;
     pointer-events: none; 
 }
@@ -37,7 +62,7 @@ html, body {
 .overlay h4 {
     font-size: clamp(1.1rem, 2vw, 1.5rem); 
     text-align: center; 
-    padding: 10px; 
+    padding: 15px; 
 }
 
 
@@ -52,9 +77,14 @@ html, body {
     top: 40px;
     left: 20px;
 }
+.top-left-center{
+    top: 35%;
+    left: 20px;
+    transform: translateY(-40%);
+}
 
 .center-left {
-    top: 50%;
+    top: 65%;
     left: 20px;
     transform: translateY(-50%);
 }
@@ -68,12 +98,18 @@ html, body {
     top: 40px;
     right: 20px;
 }
-
-.center-right {
-    top: 50%;
+.bottom-center-right{
+    top: 65%;
     right: 20px;
     transform: translateY(-50%);
 }
+
+.center-right {
+    top: 35%;
+    right: 20px;
+    transform: translateY(-40%);
+}
+
 
 .bottom-right {
     bottom: 20px;
@@ -84,39 +120,50 @@ html, body {
     top: 10px;
     left: 50%;
     transform: translateX(-50%) scale(1.2);
+    padding: 20px; 
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 968px) {
     .gif-background {
         background-image: url('/hand.gif');
     }
 
     .overlay {
         text-align: center;
+        color: #fff;
+        background: none;
     }
-
+ 
     .overlay h4 {
         font-size: clamp(0.9rem, 3vw, 1.3rem);
         padding: 5px;
     }
     .top-center{
         font-weight: bold;
-        font-size: clamp(1.3rem, 3vw, 1.8rem); 
+        text-wrap: wrap;
+        width: 100%;
+        font-size: clamp(.6rem, .5vw, 1.1rem); 
     }
     .top-left,
     .top-right
     {
-        top: 60px;
+        top: 120px;
     }
+    .top-left-center,
+    .bottom-center-right
+    {
+        top: 180px;
+    }
+
 
     .center-left,
     .center-right {
-        top: 50%;
+        top: 90%;
         transform: translateY(-50%);
     }
 
     .bottom-left,
     .bottom-right {
-        bottom: 10px; 
+        bottom: 20px; 
     }
 }
