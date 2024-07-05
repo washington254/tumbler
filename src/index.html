@@ -31,14 +31,22 @@
     <script>
         const container = document.querySelector('.three-container');
         const gifBackground = document.querySelector('.gif-background');
+        const scrollOverlays = document.querySelectorAll('.scroll-overlay-1, .scroll-overlay-2, .scroll-overlay-3, .scroll-overlay-4');
 
- 
-        function hideBackground() {
-            gifBackground.style.opacity = '0'; 
+        function hideBackground(event) {
+            let isScrollOverlayClicked = false;
+            scrollOverlays.forEach(overlay => {
+                if (overlay.contains(event.target)) {
+                    isScrollOverlayClicked = true;
+                }
+            });
+
+            if (!isScrollOverlayClicked) {
+                gifBackground.style.opacity = '0';
+            }
         }
 
         container.addEventListener('touchstart', hideBackground);
-
         container.addEventListener('click', hideBackground);
     </script>
 </body>
