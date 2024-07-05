@@ -81,9 +81,9 @@ function isMobileDevice() {
 }
 const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 15);
 if (isMobileDevice()) {
-    camera.position.set(0.1327, 0.0490, 0.8); 
+    camera.position.set(0.0327, 0.0490, 0.8); 
 } else {
-    camera.position.set(0.1327, 0.0490, 0.5); 
+    camera.position.set(0.0327, 0.0490, 0.5); 
 }
 
 scene.add(camera);

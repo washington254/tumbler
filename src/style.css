@@ -43,6 +43,7 @@ html, body {
     height: 100%;
     z-index: 100;
     filter: blur(12px);
+
 }
 .scroll-overlay-3{
     position: fixed;
@@ -51,6 +52,7 @@ html, body {
     height: 20%;
     z-index: 100;
     filter: blur(12px);
+
 }
 .scroll-overlay-4{
     position: fixed;
@@ -59,6 +61,7 @@ html, body {
     height: 20%;
     z-index: 100;
     filter: blur(12px);
+
 }
 .overlay {
     position: fixed;
@@ -128,7 +131,7 @@ html, body {
 .top-center {
     top: 10px;
     left: 50%;
-    transform: translateX(-50%) scale(1.2);
+    transform: translateX(-50%) ;
     padding: 20px; 
 }
 
@@ -148,7 +151,6 @@ html, body {
         padding: 5px;
     }
     .top-center{
-        font-weight: bold;
         text-wrap: wrap;
         width: 100%;
         font-size: clamp(.6rem, .5vw, 1.1rem); 
@@ -156,23 +158,23 @@ html, body {
     .top-left,
     .top-right
     {
-        top: 120px;
+        top: 19%;
     }
     .top-left-center,
     .bottom-center-right
     {
-        top: 180px;
+        top: 25%;
     }
 
 
     .center-left,
     .center-right {
-        top: 80%;
-        transform: translateY(-50%);
+        top: 75%;
+   
     }
 
     .bottom-left,
     .bottom-right {
-        bottom: 13%; 
+       top: 79%;
     }
 }
