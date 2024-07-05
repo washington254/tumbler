@@ -1,15 +1,10 @@
-@font-face {
-    font-family: 'Aptos';
-    src: url('/aptos.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
+
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Aptos", sans-serif;
+    font-family: "Josefin Sans", sans-serif;
 }
 html, body {
     overflow: hidden;
@@ -38,7 +33,6 @@ html, body {
     width: 20%;
     height: 100%;
     z-index: 100;
-    background: rgba(255,0,0,0.3);
     filter: blur(12px);
 }
 .scroll-overlay-2{
@@ -48,7 +42,6 @@ html, body {
     width: 20%;
     height: 100%;
     z-index: 100;
-    background: rgba(255,0,0,0.3);
     filter: blur(12px);
 }
 .scroll-overlay-3{
@@ -57,7 +50,6 @@ html, body {
     width: 100%;
     height: 20%;
     z-index: 100;
-    background: rgba(255,0,0,0.3);
     filter: blur(12px);
 }
 .scroll-overlay-4{
@@ -66,7 +58,6 @@ html, body {
     width: 100%;
     height: 20%;
     z-index: 100;
-    background: rgba(255,0,0,0.3);
     filter: blur(12px);
 }
 .overlay {
@@ -176,12 +167,12 @@ html, body {
 
     .center-left,
     .center-right {
-        top: 90%;
+        top: 80%;
         transform: translateY(-50%);
     }
 
     .bottom-left,
     .bottom-right {
-        bottom: 20px; 
+        bottom: 13%; 
     }
 }
