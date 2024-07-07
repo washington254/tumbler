@@ -65,8 +65,8 @@ html, body {
 }
 .overlay {
     position: fixed;
-        color: #fff;
-        background: none;
+    color: #fff;
+    background: none;
     z-index: 30;
     pointer-events: none; 
 }
