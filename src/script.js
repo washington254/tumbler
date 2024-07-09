@@ -16,7 +16,7 @@ import * as dat from 'lil-gui';
 
 // Base
 const gui = new dat.GUI();
-gui.hide();
+// gui.hide();
 const canvas = document.querySelector('canvas.webgl');
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x000000);
@@ -26,7 +26,7 @@ const rgbeLoader = new RGBELoader();
 rgbeLoader.load("/env-metal-1.hdr", (texture) => {
   texture.mapping = THREE.EquirectangularReflectionMapping;
   scene.environment = texture;
-  scene.environmentIntensity = 3.0;
+  scene.environmentIntensity = 0.5;
 });
 
 // Models
@@ -36,10 +36,10 @@ dracoLoader.setDecoderPath("/draco/");
 dracoLoader.setDecoderConfig({ type: 'js' });
 const gltfLoader = new GLTFLoader();
 gltfLoader.setDRACOLoader(dracoLoader);
-gltfLoader.load("/Tumbler.glb", (gltf) => {
+gltfLoader.load("/glass2.glb", (gltf) => {
   const model = gltf.scene;
-  model.scale.set(2, 2,2);
-  model.position.set(0,-0.09,0);
+  model.scale.set(.4, .4,.4);
+  model.position.set(0,-.25,0);
   scene.add(model);
   updateAllMaterials();
 }, undefined, (error) => {
@@ -81,9 +81,9 @@ function isMobileDevice() {
 }
 const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 15);
 if (isMobileDevice()) {
-    camera.position.set(0.0327, 0.0490, 0.8); 
+    camera.position.set(0.7, 0.0, 2); 
 } else {
-    camera.position.set(0.0327, 0.0490, 0.5); 
+    camera.position.set(0., 0, 1) 
 }
 
 scene.add(camera);
@@ -148,7 +148,7 @@ const params = {
     environmentIntensity: scene.environmentIntensity
 };
 
-gui.add(params, 'environmentIntensity', 1, 100).onChange(function(value) {
+gui.add(params, 'environmentIntensity', 0, 2).onChange(function(value) {
     scene.environmentIntensity = value;
 });
 
