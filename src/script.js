@@ -23,10 +23,10 @@ scene.background = new THREE.Color(0x000000);
 
 // Loaders
 const rgbeLoader = new RGBELoader();
-rgbeLoader.load("/env-metal-1.hdr", (texture) => {
+rgbeLoader.load("/sky.hdr", (texture) => {
   texture.mapping = THREE.EquirectangularReflectionMapping;
   scene.environment = texture;
-  scene.environmentIntensity = 0.5;
+  scene.environmentIntensity = 0.8;
 });
 
 // Models
