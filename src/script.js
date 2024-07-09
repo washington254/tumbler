@@ -26,7 +26,7 @@ const rgbeLoader = new RGBELoader();
 rgbeLoader.load("/sky.hdr", (texture) => {
   texture.mapping = THREE.EquirectangularReflectionMapping;
   scene.environment = texture;
-  scene.environmentIntensity = 0.8;
+  scene.environmentIntensity = 2;
 });
 
 // Models
@@ -91,8 +91,8 @@ scene.add(camera);
 const controls = new TrackballControls(camera, canvas);
 
 controls.enableDamping = true; 
-controls.noZoom = true;
-controls.noPan = true;
+controls.noZoom = false ;
+controls.noPan = false;
 
 controls.mouseButtons = {
     LEFT: THREE.MOUSE.ROTATE,
@@ -101,6 +101,14 @@ controls.mouseButtons = {
 };
 controls.rotateSpeed = 0.8;
 
+//////////////////////////////////////////////////
+//// ON MOUSE MOVE TO GET CAMERA POSITION
+document.addEventListener('mousemove', (event) => {
+    event.preventDefault()
+
+    console.log(camera.position)
+
+}, false)
 
 
 // Renderer
@@ -148,7 +156,7 @@ const params = {
     environmentIntensity: scene.environmentIntensity
 };
 
-gui.add(params, 'environmentIntensity', 0, 2).onChange(function(value) {
+gui.add(params, 'environmentIntensity', 0, 20).onChange(function(value) {
     scene.environmentIntensity = value;
 });
 
