@@ -81,9 +81,9 @@ function isMobileDevice() {
 }
 const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 15);
 if (isMobileDevice()) {
-    camera.position.set(0.7, 0.0, 2); 
+    camera.position.set(-0.35, 0.0, 1.75); 
 } else {
-    camera.position.set(0., 0, 1) 
+    camera.position.set(-0.35, 0, 0.83) 
 }
 
 scene.add(camera);
@@ -91,8 +91,8 @@ scene.add(camera);
 const controls = new TrackballControls(camera, canvas);
 
 controls.enableDamping = true; 
-controls.noZoom = false ;
-controls.noPan = false;
+controls.noZoom = false;
+controls.noPan = true;
 
 controls.mouseButtons = {
     LEFT: THREE.MOUSE.ROTATE,
