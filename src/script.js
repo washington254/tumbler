@@ -26,7 +26,7 @@ const rgbeLoader = new RGBELoader();
 rgbeLoader.load("/env-metal-1.hdr", (texture) => {
   texture.mapping = THREE.EquirectangularReflectionMapping;
   scene.environment = texture;
-  scene.environmentIntensity = .5;
+  scene.environmentIntensity = 10;
 });
 
 // Models
