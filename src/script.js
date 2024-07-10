@@ -29,6 +29,10 @@ rgbeLoader.load("/env-metal-1.hdr", (texture) => {
   scene.environmentIntensity = 10;
 });
 
+
+function isMobileDevice() {
+    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+}
 // Models
 
 const dracoLoader = new DRACOLoader();
@@ -38,7 +42,11 @@ const gltfLoader = new GLTFLoader();
 gltfLoader.setDRACOLoader(dracoLoader);
 gltfLoader.load("/Tumbler.glb", (gltf) => {
   const model = gltf.scene;
-  model.scale.set(2, 2,2);
+  if (isMobileDevice()) {
+    model.scale.set(1.8,1.8,1.8);
+} else {
+    model.scale.set(2, 2,2);
+}
   model.position.set(0,-0.09,0);
   scene.add(model);
   updateAllMaterials();
@@ -76,9 +84,6 @@ window.addEventListener('resize', () => {
 
 
 
-function isMobileDevice() {
-    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
-}
 const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 15);
 //if (isMobileDevice()) {
 //    camera.position.set(-0.35, 0.0, 1.75); 
