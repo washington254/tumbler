@@ -43,7 +43,7 @@ gltfLoader.setDRACOLoader(dracoLoader);
 gltfLoader.load("/Tumbler.glb", (gltf) => {
   const model = gltf.scene;
   if (isMobileDevice()) {
-    model.scale.set(1.8,1.8,1.8);
+    model.scale.set(1.3,1.3,1.3);
 } else {
     model.scale.set(2, 2,2);
 }
