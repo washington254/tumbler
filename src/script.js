@@ -26,7 +26,7 @@ const rgbeLoader = new RGBELoader();
 rgbeLoader.load("/env-metal-1.hdr", (texture) => {
   texture.mapping = THREE.EquirectangularReflectionMapping;
   scene.environment = texture;
-  scene.environmentIntensity = 2;
+  scene.environmentIntensity = .5;
 });
 
 // Models
@@ -80,12 +80,16 @@ function isMobileDevice() {
     return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
 }
 const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 15);
+//if (isMobileDevice()) {
+//    camera.position.set(-0.35, 0.0, 1.75); 
+//} else {
+//    camera.position.set(-0.35, 0, 0.83) 
+//}
 if (isMobileDevice()) {
-    camera.position.set(-0.35, 0.0, 1.75); 
+    camera.position.set(0.0327, 0.0490, 0.8); 
 } else {
-    camera.position.set(-0.35, 0, 0.83) 
+    camera.position.set(0.0327, 0.0490, 0.5); 
 }
-
 scene.add(camera);
 
 const controls = new TrackballControls(camera, canvas);
