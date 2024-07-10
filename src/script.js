@@ -85,11 +85,12 @@ const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerH
 //} else {
 //    camera.position.set(-0.35, 0, 0.83) 
 //}
-if (isMobileDevice()) {
-    camera.position.set(0.49968657353843976, 0.0610650897071002, -0.1); 
-} else {
-    camera.position.set(0.49968657353843976, 0.0610650897071002, -0.007394122292585765); 
-}
+//if (isMobileDevice()) {
+//    camera.position.set(0.49968657353843976, 0.0610650897071002, -0.1); 
+//} else {
+//}
+
+camera.position.set(0.49968657353843976, 0.0610650897071002, -0.007394122292585765); 
 scene.add(camera);
 
 const controls = new TrackballControls(camera, canvas);
