@@ -26,7 +26,7 @@ const rgbeLoader = new RGBELoader();
 rgbeLoader.load("/env-metal-1.hdr", (texture) => {
   texture.mapping = THREE.EquirectangularReflectionMapping;
   scene.environment = texture;
-  scene.environmentIntensity = 10;
+  scene.environmentIntensity = 1;
 });
 
 
@@ -40,14 +40,14 @@ dracoLoader.setDecoderPath("/draco/");
 dracoLoader.setDecoderConfig({ type: 'js' });
 const gltfLoader = new GLTFLoader();
 gltfLoader.setDRACOLoader(dracoLoader);
-gltfLoader.load("/Tumbler.glb", (gltf) => {
+gltfLoader.load("/glass1.glb", (gltf) => {
   const model = gltf.scene;
   if (isMobileDevice()) {
     model.scale.set(1.3,1.3,1.3);
 } else {
-    model.scale.set(2, 2,2);
+    model.scale.set(.5, .5,.5);
 }
-  model.position.set(0,-0.09,0);
+  model.position.set(0,-0.25,0);
   scene.add(model);
   updateAllMaterials();
 }, undefined, (error) => {
@@ -95,14 +95,16 @@ const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerH
 //} else {
 //}
 
-camera.position.set(0.49968657353843976, 0.0610650897071002, -0.007394122292585765); 
+// _Vector3 {x: 1.3822157987636756, y: 0.2881737793754688, z: 0.29070793416240975}
+// _Vector3 {x: 1.0211747084341387, y: 0.16511792530188898, z: 0.510358181988533}
+camera.position.set( 1.0211747084341387,0.16511792530188898, 0.510358181988533); 
 scene.add(camera);
 
 const controls = new TrackballControls(camera, canvas);
 
 controls.enableDamping = true; 
 controls.noZoom = false;
-controls.noPan = true;
+controls.noPan = false;
 
 controls.mouseButtons = {
     LEFT: THREE.MOUSE.ROTATE,
@@ -188,7 +190,7 @@ tick();
 const updateAllMaterials = () => {
     scene.traverse((child) => {
         if(child instanceof THREE.Mesh && child.material instanceof THREE.MeshStandardMaterial) {
-            child.material.envMapIntensity = 8.5;
+            child.material.envMapIntensity = 1.5;
             child.material.needsUpdate = true;
             child.castShadow = true;
             child.receiveShadow = true;
