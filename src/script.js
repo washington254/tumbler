@@ -103,8 +103,8 @@ scene.add(camera);
 const controls = new TrackballControls(camera, canvas);
 
 controls.enableDamping = true; 
-controls.noZoom = false;
-controls.noPan = false;
+controls.noZoom = true;
+controls.noPan = true;
 
 controls.mouseButtons = {
     LEFT: THREE.MOUSE.ROTATE,
