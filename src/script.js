@@ -45,7 +45,7 @@ gltfLoader.load("/glass1.glb", (gltf) => {
   
     // Set scale based on the device type
     if (isMobileDevice()) {
-      model.scale.set(1.3, 1.3, 1.3);
+      model.scale.set(0.4, 0.4, 0.4);
     } else {
       model.scale.set(0.5, 0.5, 0.5);
     }
