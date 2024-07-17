@@ -23,10 +23,10 @@ scene.background = new THREE.Color(0x000000);
 
 // Loaders
 const rgbeLoader = new RGBELoader();
-rgbeLoader.load("/env-metal-1.hdr", (texture) => {
+rgbeLoader.load("/new.hdr", (texture) => {
   texture.mapping = THREE.EquirectangularReflectionMapping;
   scene.environment = texture;
-  scene.environmentIntensity = 1;
+  scene.environmentIntensity = .8;
 });
 
 
@@ -41,30 +41,43 @@ dracoLoader.setDecoderConfig({ type: 'js' });
 const gltfLoader = new GLTFLoader();
 gltfLoader.setDRACOLoader(dracoLoader);
 gltfLoader.load("/glass1.glb", (gltf) => {
-  const model = gltf.scene;
-  if (isMobileDevice()) {
-    model.scale.set(1.3,1.3,1.3);
-} else {
-    model.scale.set(.5, .5,.5);
-}
-  model.position.set(0,-0.25,0);
-  scene.add(model);
-  updateAllMaterials();
-}, undefined, (error) => {
-  console.error(error);
-});
+    const model = gltf.scene;
+  
+    // Set scale based on the device type
+    if (isMobileDevice()) {
+      model.scale.set(1.3, 1.3, 1.3);
+    } else {
+      model.scale.set(0.5, 0.5, 0.5);
+    }
+  
+    model.position.set(0, -0.25, 0);
+    scene.add(model);
+  
+    // Iterate through the model's children to find the glass material and set its envMap to null
+    model.traverse((child) => {
+      if (child instanceof THREE.Mesh && child.material) {
+        child.material.envMap = null; // Disable reflections
+        child.material.needsUpdate = true; // Ensure the material updates
+      }
+    });
+  
+    updateAllMaterials();
+  }, undefined, (error) => {
+    console.error(error);
+  });
+  
 
 // Lights
 const ambientLight = new THREE.AmbientLight(0xffffff, 3.5); // Soft white ambient light
-scene.add(ambientLight);
+// scene.add(ambientLight);
 
 const directionalLight1 = new THREE.DirectionalLight(0xffffff, 5.8); // Soft white directional light
 directionalLight1.position.set(1, 1, 1); // Position the light
-scene.add(directionalLight1);
+// scene.add(directionalLight1);
 
 const directionalLight2 = new THREE.DirectionalLight(0xffffff, 5.5); // Soft white directional light
 directionalLight2.position.set(-1, 0, 0); // Position the light
-scene.add(directionalLight2);
+// scene.add(directionalLight2);
 
 // Sizes
 const sizes = {
